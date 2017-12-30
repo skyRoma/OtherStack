@@ -11,11 +11,11 @@
 **[Report an Issue](https://github.com/angular-ui/ui-router/blob/master/CONTRIBUTING.md#report-an-issue) |**
 **[Contribute](https://github.com/angular-ui/ui-router/blob/master/CONTRIBUTING.md#contribute) |**
 **[Help!](http://stackoverflow.com/questions/ask?tags=angularjs,angular-ui-router) |**
-**[Discuss](https://groups.google.com/forum/#!categories/angular-ui/router)**
+**[Discuss](https://groups.google.com/forum/#!articles/angular-ui/router)**
 
 ---
 
-*_Please help us out by testing the 1.0 alpha release!_* 
+*_Please help us out by testing the 1.0 alpha release!_*
 
 [1.0.0alpha0 Announcement](https://github.com/angular-ui/ui-router/releases/tag/1.0.0alpha0) ([Source  Code](https://github.com/angular-ui/ui-router/tree/feature-1.0)) | [Sample App](http://ui-router.github.io/sample-app/) ([Source Code](https://github.com/ui-router/sample-app)) | [Known Issues](https://github.com/angular-ui/ui-router/issues?q=is%3Aissue+is%3Aopen+label%3A1.0)
 
@@ -237,7 +237,7 @@ myApp.config(function($stateProvider) {
 * [FAQ](https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions)
 * [Slides comparing ngRoute to ui-router](http://slid.es/timkindberg/ui-router#/)
 * [UI-Router Extras / Addons](http://christopherthielen.github.io/ui-router-extras/#/home) (@christopherthielen)
- 
+
 ### Videos
 
 * [Introduction Video](https://egghead.io/lessons/angularjs-introduction-ui-router) (egghead.io)

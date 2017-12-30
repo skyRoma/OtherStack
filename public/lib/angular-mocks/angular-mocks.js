@@ -1799,7 +1799,7 @@ angular.module('ngMockE2E', ['ng']).config(['$provide', function($provide) {
  *
  * As opposed to unit-testing, in an end-to-end testing scenario or in scenario when an application
  * is being developed with the real backend api replaced with a mock, it is often desirable for
- * certain category of requests to bypass the mock and issue a real http request (e.g. to fetch
+ * certain article of requests to bypass the mock and issue a real http request (e.g. to fetch
  * templates or static files from the webserver). To configure the backend with this behavior
  * use the `passThrough` request handler of `when` instead of `respond`.
  *

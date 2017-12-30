@@ -6,17 +6,17 @@
 var should = require('should'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	Category = mongoose.model('Category');
+	Article = mongoose.model('Article');
 
 /**
  * Globals
  */
-var user, category;
+var user, article;
 
 /**
  * Unit tests
  */
-describe('Category Model Unit Tests:', function() {
+describe('Article Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
 			firstName: 'Full',
@@ -27,8 +27,8 @@ describe('Category Model Unit Tests:', function() {
 			password: 'password'
 		});
 
-		user.save(function() { 
-			category = new Category({
+		user.save(function() {
+			article = new Article({
 				// Add model fields
 				// ...
 			});
@@ -39,15 +39,15 @@ describe('Category Model Unit Tests:', function() {
 
 	describe('Method Save', function() {
 		it('should be able to save without problems', function(done) {
-			return category.save(function(err) {
+			return article.save(function(err) {
 				should.not.exist(err);
 				done();
 			});
 		});
 	});
 
-	afterEach(function(done) { 
-		Category.remove().exec();
+	afterEach(function(done) {
+		Article.remove().exec();
 		User.remove().exec();
 
 		done();

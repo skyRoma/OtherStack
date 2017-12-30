@@ -15,9 +15,9 @@ function validateLength (v) {
 }
 
 /**
- * Category Schema
+ * Article Schema
  */
-var CategorySchema = new Schema({
+var ArticleSchema = new Schema({
     created: {          // the property name
         type: Date,     // types are defined e.g. String, Date, Number - http://mongoosejs.com/docs/guide.html
         default: Date.now
@@ -30,7 +30,7 @@ var CategorySchema = new Schema({
     name: {
         type: String,
         default: '',
-        trim: true,     
+        trim: true,
         unique : true,
         required: 'name cannot be blank',
         validate: [validateLength, 'name must be 15 chars in length or less'] // wires into our custom validator function - http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate
@@ -38,4 +38,4 @@ var CategorySchema = new Schema({
 });
 
 // Expose the model to other objects (similar to a 'public' setter).
-mongoose.model('Category', CategorySchema);
+mongoose.model('Article', ArticleSchema);

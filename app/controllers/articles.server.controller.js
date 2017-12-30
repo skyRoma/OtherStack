@@ -5,103 +5,103 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
-	Category = mongoose.model('Category'),
+	Article = mongoose.model('Article'),
     _ = require('lodash');
 
 /**
- * Create a Category
+ * Create a Article
  */
 exports.create = function(req, res) {
-	var category = new Category(req.body);
+	var article = new Article(req.body);
 
-	category.save(function(err) {
+	article.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.status(201).json(category);
+			res.status(201).json(article);
 		}
 	});
 };
 
 /**
- * Show the current Category
+ * Show the current Article
  */
 exports.read = function(req, res) {
-	res.json(req.category);
+	res.json(req.article);
 };
 
 /**
- * Update a Category
+ * Update a Article
  */
 exports.update = function(req, res) {
-	var category = req.category;
+	var article = req.article;
 
-	category = _.extend(category, req.body);
+	article = _.extend(article, req.body);
 
-	category.save(function(err) {
+	article.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(category);
+			res.json(article);
 		}
 	});
 };
 
 /**
- * Delete an Category
+ * Delete an Article
  */
 exports.delete = function(req, res) {
-	var category = req.category;
+	var article = req.article;
 
-	category.remove(function(err) {
+	article.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(category);
+			res.json(article);
 		}
 	});
 };
 
 /**
- * List of Categories
+ * List of Articles
  */
 exports.list = function(req, res) {
-	Category.find().sort('name').exec(function(err, categories) {
+	Article.find().sort('name').exec(function(err, articles) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(categories);
+			res.json(articles);
 		}
 	});
 };
 
 /**
- * Category middleware
+ * Article middleware
  */
-exports.categoryByID = function(req, res, next, id) {
+exports.articleByID = function(req, res, next, id) {
 
 	if (!mongoose.Types.ObjectId.isValid(id)) {
 		return res.status(400).send({
-			message: 'Category is invalid'
+			message: 'Article is invalid'
 		});
 	}
 
-	Category.findById(id).exec(function(err, category) {
+	Article.findById(id).exec(function(err, article) {
 		if (err) return next(err);
-		if (!category) {
+		if (!article) {
 			return res.status(404).send({
-  				message: 'Category not found'
+  				message: 'Article not found'
   			});
 		}
-		req.category = category;
+		req.article = article;
 		next();
 	});
 };
