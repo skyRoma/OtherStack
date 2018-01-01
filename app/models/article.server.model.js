@@ -34,7 +34,8 @@ var ArticleSchema = new Schema({
         unique : true,
         required: 'name cannot be blank',
         validate: [validateLength, 'name must be 15 chars in length or less'] // wires into our custom validator function - http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate
-    }
+    },
+    username:String
 });
 
 // Expose the model to other objects (similar to a 'public' setter).
