@@ -3,10 +3,13 @@
 // Articlescontroller
 angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
 	function($scope, $stateParams, $location, Authentication, Articles) {
+        $scope.user = Authentication.user;
 		$scope.authentication = Authentication;
 	  	$scope.currentPage = 1;
 	  	$scope.pageSize = 10;
 	  	$scope.offset = 0;
+
+	  	var user = Authentication.user.displayName;
 
 	   // Page changed handler
 	   $scope.pageChanged = function() {
@@ -18,7 +21,8 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 			// Create new Article object
 			var article = new Articles({
 				name: this.name,
-				description: this.description
+				description: this.description,
+				username:user
 			});
 
 			// Redirect after save
