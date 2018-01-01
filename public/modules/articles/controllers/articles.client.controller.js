@@ -9,7 +9,6 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 	  	$scope.pageSize = 10;
 	  	$scope.offset = 0;
 
-	  	var user = Authentication.user.displayName;
 
 	   // Page changed handler
 	   $scope.pageChanged = function() {
@@ -22,7 +21,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 			var article = new Articles({
 				name: this.name,
 				description: this.description,
-				username:user
+				username:user.username
 			});
 
 			// Redirect after save
