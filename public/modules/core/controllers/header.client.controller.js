@@ -7,9 +7,9 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.menu = Menus.getMenu('topbar');
 
 
-		$scope.toggleCollapsibleMenu = function() {
-			$scope.isCollapsed = !$scope.isCollapsed;
-		};
+		// $scope.toggleCollapsibleMenu = function() {
+		// 	$scope.isCollapsed = !$scope.isCollapsed;
+		// };
 
 		// Collapsing the menu after navigation
 		$scope.$on('$stateChangeSuccess', function() {

@@ -4,104 +4,105 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	errorHandler = require('./errors.server.controller'),
-	Article = mongoose.model('Article'),
+    errorHandler = require('./errors.server.controller'),
+    Article = mongoose.model('Article'),
     _ = require('lodash');
+
 
 /**
  * Create a Article
  */
-exports.create = function(req, res) {
-	var article = new Article(req.body);
+exports.create = function (req, res) {
+    var article = new Article(req.body);
 
-	article.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.status(201).json(article);
-		}
-	});
+    article.save(function (err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.status(201).json(article);
+        }
+    });
 };
 
 /**
  * Show the current Article
  */
-exports.read = function(req, res) {
-	res.json(req.article);
+exports.read = function (req, res) {
+    res.json(req.article);
 };
 
 /**
  * Update a Article
  */
-exports.update = function(req, res) {
-	var article = req.article;
+exports.update = function (req, res) {
+    var article = req.article;
 
-	article = _.extend(article, req.body);
+    article = _.extend(article, req.body);
 
-	article.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.json(article);
-		}
-	});
+    article.save(function (err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(article);
+        }
+    });
 };
 
 /**
  * Delete an Article
  */
-exports.delete = function(req, res) {
-	var article = req.article;
+exports.delete = function (req, res) {
+    var article = req.article;
 
-	article.remove(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.json(article);
-		}
-	});
+    article.remove(function (err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(article);
+        }
+    });
 };
 
 /**
  * List of Articles
  */
-exports.list = function(req, res) {
-	Article.find().sort('name').exec(function(err, articles) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.json(articles);
-		}
-	});
+exports.list = function (req, res) {
+    Article.find().sort('name').exec(function (err, articles) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(articles);
+        }
+    });
 };
 
 /**
  * Article middleware
  */
-exports.articleByID = function(req, res, next, id) {
+exports.articleByID = function (req, res, next, id) {
 
-	if (!mongoose.Types.ObjectId.isValid(id)) {
-		return res.status(400).send({
-			message: 'Article is invalid'
-		});
-	}
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send({
+            message: 'Article is invalid'
+        });
+    }
 
-	Article.findById(id).exec(function(err, article) {
-		if (err) return next(err);
-		if (!article) {
-			return res.status(404).send({
-  				message: 'Article not found'
-  			});
-		}
-		req.article = article;
-		next();
-	});
+    Article.findById(id).exec(function (err, article) {
+        if (err) return next(err);
+        if (!article) {
+            return res.status(404).send({
+                message: 'Article not found'
+            });
+        }
+        req.article = article;
+        next();
+    });
 };
