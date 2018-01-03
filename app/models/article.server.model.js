@@ -9,18 +9,11 @@ var mongoose = require('mongoose'),
 /**
  * Validation
  */
-var validateLength = function  (v) {
-  // a custom validation function for checking string length
-  return v.length <= 15;
-
+var validateLength = function (v) {
+    // a custom validation function for checking string length
+    return v.length <= 15;
 };
 
-var validateLink=function(l) {
-  // a custom validation function for checking string length
-  return l.length <= 15;
-    // var rx = /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
-
-};
 
 /**
  * Article Schema
@@ -39,19 +32,19 @@ var ArticleSchema = new Schema({
         type: String,
         default: '',
         trim: true,
-        unique : true,
+        unique: true,
         required: 'name cannot be blank',
         validate: [validateLength, 'name must be 15 chars in length or less'], // wires into our custom validator function - http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate
 
     },
-    username:String,
+    username: String,
     validLink: {
         type: String,
         default: '',
         match: [/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/, 'Please enter correct link']
 
     }
-    });
+});
 
 // Expose the model to other objects (similar to a 'public' setter).
 mongoose.model('Article', ArticleSchema);
