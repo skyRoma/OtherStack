@@ -6,7 +6,7 @@
 		<p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
 		<iframe ng-hide="!article.validLink"  id="frame" width="560" height="315" src="" frameborder="0"></iframe>
 	</div>
-	<div  class="pull-right">
+	<div data-ng-hide="!authentication.user" class="pull-right">
 		<a class="btn btn-primary" href="/#!/articles/{{article._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
