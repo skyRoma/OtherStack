@@ -37,7 +37,7 @@ var ArticleSchema = new Schema({
         validate: [validateLength, 'name must be 15 chars in length or less'], // wires into our custom validator function - http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate
 
     },
-    username: String,
+    user: Object,
     validLink: {
         type: String,
         default: '',

@@ -29,10 +29,10 @@
 		</div>
 		<!-- end -->
 		<div class="list-group">
-			<a data-ng-repeat="article in articles|orderBy:created| limitTo: offset - articles.length | limitTo: pageSize" data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
+			<a data-ng-repeat="article in articles|orderBy:'created':true| limitTo: offset - articles.length | limitTo: pageSize" data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
 				<h4 class="list-group-item-heading" data-ng-bind="article.name"></h4>
 				<span data-ng-bind="article.description"></span>
-				<p data-ng-bind="article.username"></p>
+				<span data-ng-bind="article.user.username"></span>
 				<p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
 
 			</a>

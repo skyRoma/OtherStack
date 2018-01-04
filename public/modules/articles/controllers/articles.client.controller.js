@@ -8,10 +8,6 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         $scope.offset = 0;
-        // var olya = '<iframe  id="frame" width="560" height="315" src="' + +'"></iframe>';
-        // $scope.ad = olya;
-        // $scope.htmlAdText = $sce.trustAsHtml($scope.ad);
-
 
         $scope.AddVideo = function () {
             if ($scope.videoLink) {
@@ -57,7 +53,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '
             var article = new Articles({
                 name: this.name,
                 description: this.description,
-                username: user.username,
+                user: user,
                 validLink: this.AddVideo()
             });
 
