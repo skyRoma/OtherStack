@@ -1,4 +1,4 @@
-    <section data-ng-controller="ArticlesController" data-ng-init="findOne()">
+    <section data-ng-controller="ArticlesController" data-ng-init="findOne();readVideoLink()">
     <div class="page-header">
         <h1>Edit Article</h1>
     </div>
@@ -17,6 +17,22 @@
                         <textarea name="description" data-ng-model="article.description" id="description" class="form-control" cols="30" rows="10" placeholder="Description" required></textarea>
                     </div>
                 </div>
+
+                <div align="right">
+                    <strong><p style="width: fit-content" ng-mouseover="video=true;">Edit Video</p></strong>
+                </div>
+
+                <div class="form-group" ng-show="video">
+                    <label class="control-label" for="videoLink">Video</label>
+                    <div class="controls">
+                        <input ng-hide="frameT" type="text" data-ng-model="videoLink" id="videoLink" class="form-control"
+                               placeholder="Link"  pattern="/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/">
+                    </div>
+                    <input type="button" ng-hide="frameT" class="btn btn-default" value="Добавить" data-ng-click="EditVideo(); frameT=true">
+                </div>
+                <iframe ng-hide="!article.validLink"  id="frame" width="560" height="315" src="" frameborder="0"></iframe>
+
+
                 <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-default">
                 </div>

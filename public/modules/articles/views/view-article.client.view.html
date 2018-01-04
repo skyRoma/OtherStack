@@ -1,12 +1,10 @@
-<section data-ng-controller="ArticlesController" data-ng-init="readVideoLink()">
+<section data-ng-controller="ArticlesController" data-ng-init="findOne();readVideoLink()">
 	<div class="page-header">
 		<h1 data-ng-bind="article.name"></h1>
 		<p data-ng-bind="article.description"></p>
 		<p data-ng-bind="article.username"></p>
-		<p data-ng-bind="article.validLink"></p>
 		<p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
-		<iframe  id="frame2" width="560" height="315" src="" frameborder="0"></iframe>
-<!--<p ng-bind-html="htmlAdText"></p>-->
+		<iframe ng-hide="!article.validLink"  id="frame" width="560" height="315" src="" frameborder="0"></iframe>
 	</div>
 	<div class="pull-right">
 		<a class="btn btn-primary" href="/#!/articles/{{article._id}}/edit">
@@ -16,8 +14,4 @@
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
-<script async>
-		var temp = document.getElementById(link);
-		alert(temp);
-	</script>
 </section>

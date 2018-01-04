@@ -8,9 +8,9 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         $scope.offset = 0;
-        var olya = '<iframe  id="frame" width="560" height="315" src="' + +'"></iframe>';
-        $scope.ad = olya;
-        $scope.htmlAdText = $sce.trustAsHtml($scope.ad);
+        // var olya = '<iframe  id="frame" width="560" height="315" src="' + +'"></iframe>';
+        // $scope.ad = olya;
+        // $scope.htmlAdText = $sce.trustAsHtml($scope.ad);
 
 
         $scope.AddVideo = function () {
@@ -22,18 +22,28 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '
                 var video = document.getElementById("frame");
                 video.src = validLink;
                 return validLink;
+
             }
             else return null;
         }
 
-        $scope.readVideoLink = function () {
-            $scope.article = Articles.get({
-                articleId: $stateParams.articleId,
-            });
-            var vid = document.getElementById("frame2");
-            vid.src = "https://www.youtube.com/embed/NZStKYalqg0";
-            alert($scope.article)
+
+        $scope.EditVideo = function () {
+            $scope.article.validLink=this.AddVideo();
         }
+
+
+
+//input exist video
+        $scope.readVideoLink = function () {
+            setTimeout(function () {
+                $scope.$apply(function () {
+                    var vid = document.getElementById("frame");
+                    vid.src = $scope.article.validLink;
+                    $scope.videoLink=$scope.article.validLink;
+                });
+            }, 100);
+        };
 
 
         // Page changed handler
