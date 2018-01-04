@@ -53,7 +53,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '
             var article = new Articles({
                 name: this.name,
                 description: this.description,
-                user: user,
+                user: Authentication.user,
                 validLink: this.AddVideo()
             });
 
