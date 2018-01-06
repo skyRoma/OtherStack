@@ -1,49 +1,63 @@
 <section data-ng-controller="HomeController">
-	<div class="jumbotron text-center well" >
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-				<img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/img/brand/logo.png" />
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<p class="lead">
-				Together we can more. Join now!
-			</p>
-		</div>
-		<div class="row">
-			<p data-ng-show="authentication.user">
-				<a class="btn btn-primary btn-lg"  href="/#!/articles/create" >New Article</a>
+    <div class="jumbotron text-center well">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+                <img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/img/brand/logo.png"/>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <p ng-hide="language=='Ru'" class="lead">
+                Together we can more. Join now!
+            </p>
+            <p ng-hide="language=='En'" class="lead">
+                Вместе мы можем больше! Присоединяйся!
+            </p>
+        </div>
+        <div class="row">
+            <p ng-hide="language=='Ru'" data-ng-show="authentication.user">
+                <a class="btn btn-primary btn-lg" href="/#!/articles/create">New Article</a>
+            </p>
+            <p ng-hide="language=='En'" data-ng-show="authentication.user">
+                <a class="btn btn-primary btn-lg" href="/#!/articles/create">Новый Мануал</a>
+            </p>
+        </div>
+    </div>
 
-			</p>
-		</div>
-	</div>
-
-	<section data-ng-controller="ArticlesController" data-ng-init="find(); readVideoLink()">
-		<div class="page-header">
-			<h1>Articles</h1>
-		</div>
-		<!-- this is the new search input field -->
-		<div class="form-group">
-			<input type="text" ng-model="search" typeahead="article as article.name for article in articles | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="articleSearch($item)" placeholder="Search Article...">
-		</div>
-		<!-- end -->
-		<div class="list-group">
-			<a data-ng-repeat="article in articles|orderBy:'created':true|filter:search| limitTo: offset - articles.length | limitTo: pageSize" data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
-				<h4 class="list-group-item-heading" data-ng-bind="article.name"></h4>
-				<p data-ng-bind="article.description"></p>
-				<p data-ng-bind="article.user.username"></p>
-				<p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
-
-			</a>
-		</div>
-		<!-- this is the paging control -->
-		<pagination total-items="articles.length" ng-model="currentPage" ng-change="pageChanged()" max-size="pageSize" ng-show="articles.length > pageSize"></pagination>
-		<!-- end -->
-		<div class="alert alert-warning text-center" data-ng-hide="!articles.$resolved || articles.length">
-			No articles yet, why don't you <a href="/#!/articles/create">create one</a>?
-		</div>
-	</section>
+    <section data-ng-controller="ArticlesController" data-ng-init="find()">
+        <div class="page-header">
+            <h1 ng-hide="language=='Ru'">Articles</h1>
+            <h1 ng-hide="language=='En'">Манулы</h1>
+        </div>
+        <!-- this is the new search input field -->
+        <div class="form-group">
+            <input type="text" ng-model="search"
+                   typeahead="article as article.name for article in articles | filter:$viewValue | limitTo:8"
+                   class="form-control" typeahead-on-select="articleSearch($item)" placeholder="Search Article...">
+        </div>
+        <!-- end -->
+        <div class="list-group">
+            <a data-ng-repeat="article in articles|orderBy:'created':true|filter:search| limitTo: offset - articles.length | limitTo: pageSize"
+               data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
+                <h4 class="list-group-item-heading" data-ng-bind="article.name"></h4>
+                <p data-ng-bind="article.description"></p>
+                <p data-ng-bind="article.user.username"></p>
+                <p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
+            </a>
+        </div>
+        <!-- this is the paging control -->
+        <pagination total-items="articles.length" ng-model="currentPage" ng-change="pageChanged()" max-size="pageSize"
+                    ng-show="articles.length > pageSize"></pagination>
+        <!-- end -->
+        <div class="alert alert-warning text-center"
+             data-ng-hide="!articles.$resolved || articles.length||language=='En'">
+            No articles yet, why don't you <a href="/#!/articles/create">create one</a>?
+        </div>
+        <div class="alert alert-warning text-center"
+             data-ng-hide="!articles.$resolved || articles.length|| language=='En'">
+            Ещё нет мануалов, почему бы тебе не <a href="/#!/articles/create">создать его</a>?
+        </div>
+    </section>
 
 </section>
 

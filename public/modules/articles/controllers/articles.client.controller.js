@@ -33,11 +33,10 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '
 //input exist video
         $scope.readVideoLink = function () {
             setTimeout(function () {
-                $scope.$apply(function () {
                     var vid = document.getElementById("frame");
                     vid.src = $scope.article.validLink;
                     $scope.videoLink=$scope.article.validLink;
-                });
+
             }, 100);
         };
 

@@ -1,44 +1,69 @@
-    <section data-ng-controller="ArticlesController" data-ng-init="findOne();readVideoLink()">
+<section data-ng-controller="ArticlesController" data-ng-init="findOne();readVideoLink()">
     <div class="page-header">
-        <h1>Edit Article</h1>
+        <h1 ng-hide="language=='Ru'">Edit Article</h1>
+        <h1 ng-hide="language=='En'">Изменить Мануал</h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label ng-hide="language=='En'" class="control-label" for="name">Имя</label>
+                    <label ng-hide="language=='Ru'" class="control-label" for="name">Name</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="article.name" id="name" class="form-control" placeholder="Name" required>
+                        <input ng-hide="language=='Ru'" type="text" data-ng-model="article.name" id="name"
+                               class="form-control" placeholder="Name" required>
+                        <input ng-hide="language=='En'" type="text" data-ng-model="article.name" id="name"
+                               class="form-control" placeholder="Имя" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="description">Description</label>
+                    <label ng-hide="language=='En'" class="control-label" for="description">Описание</label>
+                    <label ng-hide="language=='Ru'" class="control-label" for="description">Description</label>
                     <div class="controls">
-                        <textarea name="description" data-ng-model="article.description" id="description" class="form-control" cols="30" rows="10" placeholder="Description" required></textarea>
+                        <textarea ng-hide="language=='En'" name="description" data-ng-model="article.description"
+                                  id="description" class="form-control" cols="30" rows="10" placeholder="Описание"
+                                  required></textarea>
+                        <textarea ng-hide="language=='Ru'" name="description" data-ng-model="article.description"
+                                  id="description" class="form-control" cols="30" rows="10" placeholder="Description"
+                                  required></textarea>
                     </div>
                 </div>
 
                 <div align="right">
-                    <strong><p style="width: fit-content" ng-mouseover="video=true;">Edit Video</p></strong>
+                    <strong><p ng-hide="language=='En'" style="width: fit-content" ng-mouseover="video=true;">Изменить
+                        видео</p></strong>
+                    <strong><p ng-hide="language=='Ru'" style="width: fit-content" ng-mouseover="video=true;">Edit
+                        Video</p></strong>
                 </div>
 
                 <div class="form-group" ng-show="video">
                     <label class="control-label" for="videoLink">Video</label>
                     <div class="controls">
-                        <input ng-hide="frameT" type="text" data-ng-model="videoLink" id="videoLink" class="form-control"
-                               placeholder="Link"  pattern="/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/">
+                        <input ng-hide="frameT||language=='En'" type="text" data-ng-model="videoLink" id="videoLink"
+                               class="form-control"
+                               placeholder="Ссылка"
+                               pattern="/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/">
+                        <input ng-hide="frameT||language=='Ru'" type="text" data-ng-model="videoLink" id="videoLink"
+                               class="form-control"
+                               placeholder="Link"
+                               pattern="/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/">
                     </div>
-                    <input type="button" ng-hide="frameT" class="btn btn-default" value="Добавить" data-ng-click="EditVideo(); frameT=true">
+                    <input type="button" ng-hide="frameT||language=='En'" class="btn btn-default"
+                           value="Изменить" data-ng-click="EditVideo(); frameT=true">
+                    <input type="button" ng-hide="frameT||language=='Ru'" class="btn btn-default"
+                           value="Edit" data-ng-click="EditVideo(); frameT=true">
                 </div>
-                <iframe ng-hide="!article.validLink"  id="frame" width="560" height="315" src="" frameborder="0"></iframe>
+                <iframe ng-hide="!article.validLink" id="frame" width="560" height="315" src=""
+                        frameborder="0"></iframe>
 
 
                 <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                    <input ng-hide="language=='En'" type="submit" value="Обновить" class="btn btn-default">
+                    <input ng-hide="language=='Ru'" type="submit" value="Update" class="btn btn-default">
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
             </fieldset>
         </form>
     </div>

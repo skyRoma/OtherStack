@@ -3,7 +3,6 @@
 /**
  * Module dependencies.
  */
-
 var passport = require('passport'),
     url = require('url'),
     VKontakteStrategy = require('passport-vkontakte').Strategy,
