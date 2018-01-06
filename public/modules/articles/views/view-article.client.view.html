@@ -14,6 +14,50 @@
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>
+	<!--List of comments-->
+	<section data-ng-controller="CommentsController" data-ng-init="find()">
+		<h3>Comments:</h3>
+		<div class="list-group">
+			<div data-ng-repeat="comment in comments|filter:{article:article._id}:true" class="list-group-item">
+				<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == comment.user._id))">
+					<a href="/#!/comments/{{comment._id}}/edit">
+						<img src="/modules/users/img/buttons/edit.png" style="width: 20px; height: 20px">
+					</a>
+					<a data-ng-click="remove();">
+						<img src="/modules/users/img/buttons/remove.png" style="width: 20px; height: 20px">
+					</a>
+				</div>
+				<h4 class="list-group-item-heading" data-ng-bind="comment.text"></h4>
+				<small class="list-group-item-text">
+					Posted on
+					<span data-ng-bind="comment.created | date:'dd-MM-yyyy HH:mm'"></span></br>
+					by <span data-ng-bind="comment.user.username"></span>
+				</small>
+			</div>
+		</div>
 
+		<!--Create new comment-->
+
+		<div class="col-md-12">
+			<form class="form-horizontal" data-ng-submit="create(); find()" novalidate>
+				<fieldset>
+					<div class="form-group">
+						<label class="control-label" for="name"></label>
+						<div class="controls">
+							<input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Add your comment" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-default" value="Add">
+					</div>
+					<div data-ng-show="error" class="text-danger">
+						<strong data-ng-bind="error"></strong>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</section>
 
 </section>
+
+
