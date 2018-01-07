@@ -72,6 +72,11 @@
             </tr>
         </table>
     </h4>
+    <div class="pull-right">
+        <a class="btn btn-primary" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
     <section data-ng-controller="ArticlesController" data-ng-init="find()">
         <div ng-hide="language=='En'" class="page-header">
             <h1>Мануалы <a class="btn btn-primary " href="/#!/articles/create">Новый Мануал</a></h1>

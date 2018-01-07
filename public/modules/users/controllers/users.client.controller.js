@@ -20,7 +20,7 @@ angular.module('users').controller('UsersController', ['$scope', '$sce', '$state
                 }
             } else {
                 $scope.user.$remove(function() {
-
+                    $location.path('admin');
                 });
             }
         };

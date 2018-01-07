@@ -3,7 +3,8 @@
 // Articlescontroller
 angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '$stateParams', '$location', 'Authentication', 'Articles',
     function ($scope, $sce, $stateParams, $location, Authentication, Articles) {
-        $scope.user = Authentication.user;
+          if (!$scope.user) $scope.user = Authentication.user;
+
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 10;
