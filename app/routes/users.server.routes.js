@@ -38,13 +38,6 @@ module.exports = function(app) {
     app.route('/auth/vkontakte').get(passport.authenticate('vkontakte'));
     app.route('/auth/vkontakte/callback').get(users.oauthCallback('vkontakte'));
 
-
-
-    //
-    // app.route('/admin')
-    //     .get(users.list)
-    //     .delete(users.delete);
-
     app.route('/admin')
         .get(users.list)
 

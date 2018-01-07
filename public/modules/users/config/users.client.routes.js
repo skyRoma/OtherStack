@@ -44,6 +44,10 @@ angular.module('users').config(['$stateProvider',
         state('listUsers', {
             url: '/admin',
             templateUrl: 'modules/users/views/list-users.client.view.html'
-        });
+        }).
+		state('viewOtherProfile', {
+			url: '/admin/:userId',
+			templateUrl: 'modules/users/views/Other-users.client.view.html'
+		});
 	}
 ]);

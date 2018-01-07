@@ -111,5 +111,10 @@ exports.userByID = function (req, res, next, id) {
         req.user = user;
         next();
     });
+
+    exports.read = function (req, res) {
+        res.json(req.user);
+    };
+
 };
 
