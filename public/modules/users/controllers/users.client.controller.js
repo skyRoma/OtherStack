@@ -12,7 +12,7 @@ angular.module('users').controller('UsersController', ['$scope', '$sce', '$state
             var user=this.user;
             if ( user ) {
                 user.$remove();
-
+                $location.path('/admin');
                 for (var i in $scope.users) {
                     if ($scope.users[i] === user) {
                         $scope.users.splice(i, 1);
@@ -20,7 +20,7 @@ angular.module('users').controller('UsersController', ['$scope', '$sce', '$state
                 }
             } else {
                 $scope.user.$remove(function() {
-                    $location.path('admin');
+                    $location.path('/admin');
                 });
             }
         };
