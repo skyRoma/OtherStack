@@ -15,10 +15,10 @@
             </p>
         </div>
         <div class="row">
-            <p ng-hide="language=='Ru'" data-ng-show="authentication.user">
+            <p ng-hide="language=='Ru'||!authentication.user">
                 <a class="btn btn-primary btn-lg" href="/#!/articles/create">New Article</a>
             </p>
-            <p ng-hide="language=='En'" data-ng-show="authentication.user">
+            <p ng-hide="language=='En'||!authentication.user">
                 <a class="btn btn-primary btn-lg" href="/#!/articles/create">Новый Мануал</a>
             </p>
         </div>
