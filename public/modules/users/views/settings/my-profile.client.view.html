@@ -72,39 +72,39 @@
             </tr>
         </table>
     </h4>
-</section>
-<section data-ng-controller="ArticlesController" data-ng-init="find()">
-    <div ng-hide="language=='En'" class="page-header">
-        <h1>Новый Мануал <a class="btn btn-primary " href="/#!/articles/create">Новый Мануал</a></h1>
-    </div>
-    <div ng-hide="language=='Ru'" class="page-header">
-        <h1>My Articles <a class="btn btn-primary " href="/#!/articles/create">New Article</a></h1>
-    </div>
-    <!-- this is the new search input field -->
-    <div ng-hide="language=='En'" class="form-group">
-        <input type="text" ng-model="search"
-               typeahead="article as article.name for article in articles | filter:$viewValue | limitTo:8"
-               class="form-control" typeahead-on-select="articleSearch($item)" placeholder="Поиск Мануала...">
-    </div>
-    <div ng-hide="language=='Ru'" class="form-group">
-        <input type="text" ng-model="search"
-               typeahead="article as article.name for article in articles | filter:$viewValue | limitTo:8"
-               class="form-control" typeahead-on-select="articleSearch($item)" placeholder="Search Article...">
-    </div>
-    <!-- end -->
-    <div class="list-group">
-        <a data-ng-repeat="article in articles | filter:{user:user._id}:true|orderBy:'created':true"
-           data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
-            <h4 class="list-group-item-heading" data-ng-bind="article.name"></h4>
-            <span data-ng-bind="article.description"></span>
-            <span data-ng-bind="article.user.username"></span>
-            <p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
-        </a>
-    </div>
-    <!-- this is the paging control -->
-    <!--<pagination total-items="articles.length" ng-model="currentPage" ng-change="pageChanged()" max-size="pageSize" ng-show="articles.length > pageSize"></pagination>-->
-    <!-- end -->
-    <div class="alert alert-warning text-center" data-ng-hide="!articles.$resolved || articles.length">
-        No articles yet, why don't you <a href="/#!/articles/create">create one</a>?
-    </div>
+    <section data-ng-controller="ArticlesController" data-ng-init="find()">
+        <div ng-hide="language=='En'" class="page-header">
+            <h1>Новый Мануал <a class="btn btn-primary " href="/#!/articles/create">Новый Мануал</a></h1>
+        </div>
+        <div ng-hide="language=='Ru'" class="page-header">
+            <h1>My Articles <a class="btn btn-primary " href="/#!/articles/create">New Article</a></h1>
+        </div>
+        <!-- this is the new search input field -->
+        <div ng-hide="language=='En'" class="form-group">
+            <input type="text" ng-model="search"
+                   typeahead="article as article.name for article in articles | filter:$viewValue | limitTo:8"
+                   class="form-control" typeahead-on-select="articleSearch($item)" placeholder="Поиск Мануала...">
+        </div>
+        <div ng-hide="language=='Ru'" class="form-group">
+            <input type="text" ng-model="search"
+                   typeahead="article as article.name for article in articles | filter:$viewValue | limitTo:8"
+                   class="form-control" typeahead-on-select="articleSearch($item)" placeholder="Search Article...">
+        </div>
+        <!-- end -->
+        <div class="list-group">
+            <a data-ng-repeat="article in articles | filter:{user:user._id}:true|orderBy:'created':true"
+               data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
+                <h4 class="list-group-item-heading" data-ng-bind="article.name"></h4>
+                <span data-ng-bind="article.description"></span>
+                <span data-ng-bind="article.user.username"></span>
+                <p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
+            </a>
+        </div>
+        <!-- this is the paging control -->
+        <!--<pagination total-items="articles.length" ng-model="currentPage" ng-change="pageChanged()" max-size="pageSize" ng-show="articles.length > pageSize"></pagination>-->
+        <!-- end -->
+        <div class="alert alert-warning text-center" data-ng-hide="!articles.$resolved || articles.length">
+            No articles yet, why don't you <a href="/#!/articles/create">create one</a>?
+        </div>
+    </section>
 </section>
