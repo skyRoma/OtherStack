@@ -54,3 +54,38 @@ exports.update = function(req, res) {
 exports.me = function(req, res) {
 	res.json(req.user || null);
 };
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * List of Users
+ */
+exports.list = function (req, res) {
+    User.find().exec(function (err,users) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(users);
+        }
+    });
+};
+
+exports.delete = function(req, res) {
+    var user = req.user;
+
+    user.remove(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(user);
+        }
+    });
+};
+
+

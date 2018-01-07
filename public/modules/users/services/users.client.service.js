@@ -6,7 +6,16 @@ angular.module('users').factory('Users', ['$resource',
 		return $resource('users', {}, {
 			update: {
 				method: 'PUT'
-			}
-		});
+ 		}});
 	}
-]);
+])
+	.factory('UsersAdmin', ['$resource',
+    function($resource) {
+        return $resource('/admin', {}, {
+            update: {
+                method: 'PUT'
+            }});
+    }
+])
+;
+

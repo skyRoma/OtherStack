@@ -8,7 +8,7 @@ var passport = require('passport');
 module.exports = function(app) {
 	// User Routes
 	var users = require('../../app/controllers/users.server.controller');
-
+    var articles = require('../../app/controllers/articles.server.controller');
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);
 	app.route('/users').put(users.update);
@@ -38,6 +38,14 @@ module.exports = function(app) {
 	// Setting the vkontakte oauth routes
     app.route('/auth/vkontakte').get(passport.authenticate('vkontakte'));
     app.route('/auth/vkontakte/callback').get(users.oauthCallback('vkontakte'));
+
+
+
+
+    app.route('/admin')
+        .get(users.list)
+        .delete(users.delete);
+
 
 
 	// Finish by binding the user middleware
