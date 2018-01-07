@@ -31,6 +31,11 @@ angular.module('users').controller('UsersController', ['$scope', '$sce', '$state
             $scope.users = UsersAdmin.query();
         };
 
+        $scope.findOne = function () {
+            $scope.user = UsersAdmin.get({
+                userId: $stateParams.userId
+            });
+        };
 
     }
 ]);

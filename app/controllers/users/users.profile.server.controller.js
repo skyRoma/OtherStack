@@ -74,6 +74,10 @@ exports.list = function (req, res) {
     });
 };
 
+exports.read = function (req, res) {
+    res.json(req.user);
+};
+
 exports.delete = function(req, res) {
     var user = req.user;
 
@@ -88,4 +92,24 @@ exports.delete = function(req, res) {
     });
 };
 
+
+exports.userByID = function (req, res, next, id) {
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send({
+            message: 'User is invalid'
+        });
+    }
+
+    User.findById(id).exec(function (err, user) {
+        if (err) return next(err);
+        if (!user) {
+            return res.status(404).send({
+                message: 'User not found'
+            });
+        }
+        req.user = user;
+        next();
+    });
+};
 

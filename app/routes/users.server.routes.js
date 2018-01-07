@@ -8,7 +8,6 @@ var passport = require('passport');
 module.exports = function(app) {
 	// User Routes
 	var users = require('../../app/controllers/users.server.controller');
-    var articles = require('../../app/controllers/articles.server.controller');
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);
 	app.route('/users').put(users.update);
@@ -41,9 +40,18 @@ module.exports = function(app) {
 
 
 
+    //
+    // app.route('/admin')
+    //     .get(users.list)
+    //     .delete(users.delete);
 
     app.route('/admin')
         .get(users.list)
+
+
+    app.route('/admin/:userId')
+        .get(users.read)
+        .put(users.update)
         .delete(users.delete);
 
 

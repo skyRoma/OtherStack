@@ -11,11 +11,12 @@ angular.module('users').factory('Users', ['$resource',
 ])
 	.factory('UsersAdmin', ['$resource',
     function($resource) {
-        return $resource('/admin', {}, {
+        return $resource('admin/:userId', { userId: '@_id'
+        }, {
             update: {
                 method: 'PUT'
-            }});
+            }
+        });
     }
-])
-;
+]);
 
