@@ -14,8 +14,6 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
 	var comment = new Comment(req.body);
 	comment.user = req.user;
-    comment.username = req.user.username;
-
 	comment.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -73,7 +71,7 @@ exports.delete = function(req, res) {
 /**
  * List of Comments
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
 	Comment.find().sort('created').populate('user', 'username').exec(function(err, comments) {
 		if (err) {
 			return res.status(400).send({
@@ -88,7 +86,7 @@ exports.list = function(req, res) {
 /**
  * Comment middleware
  */
-exports.commentByID = function(req, res, next, id) { 
+exports.commentByID = function(req, res, next, id) {
 	Comment.findById(id).populate('user', 'username').exec(function(err, comment) {
 		if (err) return next(err);
 		if (! comment) return next(new Error('Failed to load Comment ' + id));
