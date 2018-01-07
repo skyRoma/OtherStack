@@ -63,10 +63,10 @@
 					<li ng-hide="language=='En'">
 						<a href="/#!/settings/accounts">Социальные Сети</a>
 					</li>
-					<li ng-hide="language=='Ru'" data-ng-show="authentication.user.provider === 'local'">
+					<li ng-hide="language=='Ru'||authentication.user.provider !== 'local'">
 						<a href="/#!/settings/password">Change Password</a>
 					</li>
-					<li data-ng-show="authentication.user.provider === 'local'" ng-hide="language=='En'">
+					<li ng-hide="language=='En'||authentication.user.provider !== 'local'" >
 						<a href="/#!/settings/password">Изменить Пароль</a>
 					</li>
 					<li class="divider"></li>
