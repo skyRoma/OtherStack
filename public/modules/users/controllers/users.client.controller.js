@@ -7,10 +7,24 @@ angular.module('users').controller('UsersController', ['$scope', '$sce', '$state
         $scope.pageSize = 10;
         $scope.offset = 0;
 
+        $scope.makeAdmin = function () {
+            $scope.success = $scope.error = null;
+            var user = new UsersAdmin($scope.user);
+            user.role = "admin";
+            user.$update(function (response) {
+                $scope.success = true;
+                Authentication.user = response;
+            }, function (response) {
+                $scope.error = response.data.message;
+            });
+
+        };
+
+
         // Remove existing User
-        $scope.remove = function(user) {
-            var user=this.user;
-            if ( user ) {
+        $scope.remove = function (user) {
+            var user = this.user;
+            if (user) {
                 user.$remove();
                 $location.path('/admin');
                 for (var i in $scope.users) {
@@ -19,7 +33,7 @@ angular.module('users').controller('UsersController', ['$scope', '$sce', '$state
                     }
                 }
             } else {
-                $scope.user.$remove(function() {
+                $scope.user.$remove(function () {
                     $location.path('/admin');
                 });
             }
@@ -37,5 +51,19 @@ angular.module('users').controller('UsersController', ['$scope', '$sce', '$state
             });
         };
 
+        $scope.updateUserProfile = function (isValid) {
+            if (isValid) {
+                $scope.success = $scope.error = null;
+                var user = $scope.user;
+                user.$update(function (response) {
+                    $scope.success = true;
+                    // Authentication.user = response;
+                }, function (response) {
+                    $scope.error = response.data.message;
+                });
+            } else {
+                $scope.submitted = true;
+            }
+        };
     }
 ]);

@@ -1,7 +1,7 @@
-<section ng-mouseup="updateUserProfile(userForm.$valid)" class="row" data-ng-controller="UsersController" ng-init="findOne()">
+<section  class="row" data-ng-controller="UsersController" ng-init="findOne()">
     <h1 ng-hide="language=='En'" class="col-md-12 text-center">Cтраница {{user.username}}</h1>
     <h1 ng-hide="language=='Ru'" class="col-md-12 text-center">{{user.username}} profile</h1>
-    <h4>
+    <h4 ng-mouseup="updateUserProfile(userForm.$valid)">
         <table align="center">
             <tr>
                 <div align="center" class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
@@ -63,6 +63,12 @@
                                     <td contenteditable ng-model="user.username"></td>
                                     <td></td>
                                 </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Role</td>
+                                    <td ng-bind="user.role"></td>
+                                    <td></td>
+                                </tr>
 
                             </table>
                         </fieldset>
@@ -73,11 +79,12 @@
         </table>
     </h4>
     <div class="pull-right">
-        <a class="btn btn-primary" data-ng-click="remove();">
+        <a class="btn btn-primary" data-ng-click="makeAdmin(); findOne()">Назначить админом</a>
+        <a class="btn btn-primary" data-ng-click="remove()">
             <i class="glyphicon glyphicon-trash"></i>
         </a>
     </div>
-    <section data-ng-controller="ArticlesController" data-ng-init="find()">
+    <section ng-mouseup="updateUserProfile(userForm.$valid)" data-ng-controller="ArticlesController" data-ng-init="find()">
         <div ng-hide="language=='En'" class="page-header">
             <h1>Мануалы <a class="btn btn-primary " href="/#!/articles/create">Новый Мануал</a></h1>
         </div>
