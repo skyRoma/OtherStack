@@ -1,4 +1,4 @@
-<section class="row" data-ng-controller="UsersController" ng-init="findOne()">
+<section  class="row" data-ng-controller="UsersController" ng-init="findOne()">
     <h1 ng-hide="language=='En'" class="col-md-12 text-center">Cтраница {{user.username}}</h1>
     <h1 ng-hide="language=='Ru'" class="col-md-12 text-center">{{user.username}} profile</h1>
     <h4 ng-mouseup="updateUserProfile(userForm.$valid)">
@@ -33,6 +33,12 @@
                                     <td></td>
                                     <td>Имя пользователя</td>
                                     <td contenteditable ng-model="user.username"></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Статус</td>
+                                    <td ng-bind="user.role"></td>
                                     <td></td>
                                 </tr>
 
@@ -78,22 +84,21 @@
             </tr>
         </table>
     </h4>
-    <div ng-hide="language=='En'" class="pull-right">
+    <div ng-hide="language=='En'"  class="pull-right">
         <a class="btn btn-primary" data-ng-click="makeAdmin(); findOne()">Назначить админом</a>
         <a class="btn btn-primary" data-ng-click="removeAdmin(); findOne()">Убрать из админов</a>
         <a class="btn btn-primary" data-ng-click="remove()">
             <i class="glyphicon glyphicon-trash"></i>
         </a>
     </div>
-    <div ng-hide="language=='Ru'" class="pull-right">
+    <div ng-hide="language=='Ru'"  class="pull-right">
         <a class="btn btn-primary" data-ng-click="makeAdmin(); findOne()">Add to admins</a>
         <a class="btn btn-primary" data-ng-click="removeAdmin(); findOne()">Remove from admins</a>
         <a class="btn btn-primary" data-ng-click="remove()">
             <i class="glyphicon glyphicon-trash"></i>
         </a>
     </div>
-    <section ng-mouseup="updateUserProfile(userForm.$valid)" data-ng-controller="ArticlesController"
-             data-ng-init="find()">
+    <section ng-mouseup="updateUserProfile(userForm.$valid)" data-ng-controller="ArticlesController" data-ng-init="find()">
         <div ng-hide="language=='En'" class="page-header">
             <h1>Мануалы <a class="btn btn-primary " href="/#!/articles/create">Новый Мануал</a></h1>
         </div>
@@ -116,7 +121,6 @@
             <a data-ng-repeat="article in articles | filter:{user:user._id}:true|orderBy:'created':true"
                data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
                 <h4 class="list-group-item-heading" data-ng-bind="article.name"></h4>
-                <span data-ng-bind="article.description"></span>
                 <span data-ng-bind="article.user.username"></span>
                 <p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
             </a>
