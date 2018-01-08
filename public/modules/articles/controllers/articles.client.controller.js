@@ -10,6 +10,15 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '
         $scope.pageSize = 10;
         $scope.offset = 0;
 
+        $scope.incrementUpvotes=function () {
+            $scope.article.upvotes++;
+        }
+        $scope.incrementUnpvotes=function () {
+            $scope.article.unpvotes++;
+        }
+
+
+
         $scope.AddVideo = function () {
             if ($scope.videoLink) {
                 var r,

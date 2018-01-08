@@ -78,8 +78,16 @@
             </tr>
         </table>
     </h4>
-    <div class="pull-right">
+    <div ng-hide="language=='En'"  class="pull-right">
         <a class="btn btn-primary" data-ng-click="makeAdmin(); findOne()">Назначить админом</a>
+        <a class="btn btn-primary" data-ng-click="removeAdmin(); findOne()">Убрать из админов</a>
+        <a class="btn btn-primary" data-ng-click="remove()">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div ng-hide="language=='Ru'"  class="pull-right">
+        <a class="btn btn-primary" data-ng-click="makeAdmin(); findOne()">Add to admins</a>
+        <a class="btn btn-primary" data-ng-click="removeAdmin(); findOne()">Remove from admins</a>
         <a class="btn btn-primary" data-ng-click="remove()">
             <i class="glyphicon glyphicon-trash"></i>
         </a>

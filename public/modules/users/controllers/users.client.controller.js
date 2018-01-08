@@ -13,7 +13,17 @@ angular.module('users').controller('UsersController', ['$scope', '$sce', '$state
             user.role = "admin";
             user.$update(function (response) {
                 $scope.success = true;
-                Authentication.user = response;
+            }, function (response) {
+                $scope.error = response.data.message;
+            });
+
+        };
+        $scope.removeAdmin = function () {
+            $scope.success = $scope.error = null;
+            var user = new UsersAdmin($scope.user);
+            user.role = "user";
+            user.$update(function (response) {
+                $scope.success = true;
             }, function (response) {
                 $scope.error = response.data.message;
             });
@@ -57,7 +67,6 @@ angular.module('users').controller('UsersController', ['$scope', '$sce', '$state
                 var user = $scope.user;
                 user.$update(function (response) {
                     $scope.success = true;
-                    // Authentication.user = response;
                 }, function (response) {
                     $scope.error = response.data.message;
                 });
