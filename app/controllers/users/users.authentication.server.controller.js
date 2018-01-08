@@ -4,10 +4,14 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	errorHandler = require('../errors.server.controller'),
-	mongoose = require('mongoose'),
-	passport = require('passport'),
-	User = mongoose.model('User');
+    errorHandler = require('../errors.server.controller'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    User = mongoose.model('User'),
+    config = require('../../../config/config'),
+    nodemailer = require('nodemailer'),
+    async = require('async'),
+    crypto = require('crypto');
 
 /**
  * Signup
@@ -19,6 +23,27 @@ exports.signup = function(req, res) {
 	// Init Variables
 	var user = new User(req.body);
 	var message = null;
+
+    var smtpTransport = nodemailer.createTransport(config.mailer.options);
+
+    smtpTransport.sendMail({  //email options
+        from: config.mailer.from, // sender address.  Must be the same as authenticated user if using Gmail.
+        to: user.email, // receiver
+        subject: "Sharing", // subject
+        html: "<h2>Ваш аккаунт успешно зарегистрирован.</h2>" // body
+    }, function(error, response){  //callback
+        if(error){
+            console.log(error);
+        }else{
+            console.log("Message sent: " + response.message);
+        }
+
+        smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+    });
+
+
+
+
 
 	// Add missing user fields
 	user.provider = 'local';
