@@ -51,10 +51,10 @@
                     <li ng-hide="language=='En'">
                         <a href="/#!/settings/profile">Моя Страница</a>
                     </li>
-                    <li ng-hide="language=='Ru'">
+                    <li ng-hide="language=='Ru'||authentication.user.username!='admin'">
                         <a href="/#!/admin">Admin</a>
                     </li>
-                    <li ng-hide="language=='En'">
+                    <li ng-hide="language=='En'||authentication.user.username!='admin'">
                         <a href="/#!/admin">Админ</a>
                     </li>
                     <li ng-hide="language=='Ru'">
