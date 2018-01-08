@@ -1,87 +1,87 @@
 <div class="container" data-ng-controller="HeaderController">
-	<div ng-hide="language=='Ru'" class="navbar-header">
-				<a href="/#!/" class="navbar-brand">Home</a>
-	</div>
-	<div ng-hide="language=='En'" class="navbar-header">
-				<a href="/#!/" class="navbar-brand">Главная</a>
-	</div>
-	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-		<ul class="nav navbar-nav navbar-right">
-			<li class="dropdown" dropdown>
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" dropdown-toggle>
-					<span ng-bind="language"></span> <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a ng-click="langEn()">En</a>
-					</li>
-					<li>
-						<a ng-click="langRu()">Ru</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
-			<li ng-hide="language=='Ru'" ui-route="/signup" ng-class="{active: $uiRoute}">
-				<a href="/#!/signup">Sign Up</a>
-			</li>
-			<li ng-hide="language=='En'" ui-route="/signup" ng-class="{active: $uiRoute}">
-				<a href="/#!/signup">Зарегестрироваться</a>
-			</li>
-			<li class="divider-vertical"></li>
-			<li ng-hide="language=='Ru'"  ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin">Sign In</a>
-			</li>
-			<li ng-hide="language=='En'" ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin">Войти</a>
-			</li>
-			<li>
+    <div ng-hide="language=='Ru'" class="navbar-header">
+        <a href="/#!/" class="navbar-brand">Home</a>
+    </div>
+    <div ng-hide="language=='En'" class="navbar-header">
+        <a href="/#!/" class="navbar-brand">Главная</a>
+    </div>
+    <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown" dropdown>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" dropdown-toggle>
+                    <span ng-bind="language"></span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a ng-click="langEn()">En</a>
+                    </li>
+                    <li>
+                        <a ng-click="langRu()">Ru</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
+            <li ng-hide="language=='Ru'" ui-route="/signup" ng-class="{active: $uiRoute}">
+                <a href="/#!/signup">Sign Up</a>
+            </li>
+            <li ng-hide="language=='En'" ui-route="/signup" ng-class="{active: $uiRoute}">
+                <a href="/#!/signup">Зарегестрироваться</a>
+            </li>
+            <li class="divider-vertical"></li>
+            <li ng-hide="language=='Ru'" ui-route="/signin" ng-class="{active: $uiRoute}">
+                <a href="/#!/signin">Sign In</a>
+            </li>
+            <li ng-hide="language=='En'" ui-route="/signin" ng-class="{active: $uiRoute}">
+                <a href="/#!/signin">Войти</a>
+            </li>
+            <li>
 
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
-			<li class="dropdown" dropdown>
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" dropdown-toggle>
-					<span data-ng-bind="authentication.user.username"></span> <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li ng-hide="language=='Ru'">
-						<a href="/#!/settings/profile">My Profile</a>
-					</li>
-					<li ng-hide="language=='En'">
-						<a href="/#!/settings/profile">Моя Страница</a>
-					</li>
-					<li ng-hide="language=='Ru'">
-						<a href="/#!/admin">Admin</a>
-					</li>
-					<li ng-hide="language=='En'">
-						<a href="/#!/admin">Админ</a>
-					</li>
-					<li ng-hide="language=='Ru'">
-						<a href="/#!/settings/accounts">Manage Social Accounts</a>
-					</li>
-					<li ng-hide="language=='En'">
-						<a href="/#!/settings/accounts">Социальные Сети</a>
-					</li>
-					<li ng-hide="language=='Ru'||authentication.user.provider !== 'local'">
-						<a href="/#!/settings/password">Change Password</a>
-					</li>
-					<li ng-hide="language=='En'||authentication.user.provider !== 'local'" >
-						<a href="/#!/settings/password">Изменить Пароль</a>
-					</li>
-					<li class="divider"></li>
-					<li ng-hide="language=='Ru'">
-						<a href="/auth/signout">Signout</a>
-					</li>
-					<li ng-hide="language=='En'">
-						<a href="/auth/signout">Выйти</a>
-					</li>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
+            <li class="dropdown" dropdown>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" dropdown-toggle>
+                    <span data-ng-bind="authentication.user.username"></span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li ng-hide="language=='Ru'">
+                        <a href="/#!/settings/profile">My Profile</a>
+                    </li>
+                    <li ng-hide="language=='En'">
+                        <a href="/#!/settings/profile">Моя Страница</a>
+                    </li>
+                    <li ng-hide="language=='Ru'">
+                        <a href="/#!/admin">Admin</a>
+                    </li>
+                    <li ng-hide="language=='En'">
+                        <a href="/#!/admin">Админ</a>
+                    </li>
+                    <li ng-hide="language=='Ru'">
+                        <a href="/#!/settings/accounts">Manage Social Accounts</a>
+                    </li>
+                    <li ng-hide="language=='En'">
+                        <a href="/#!/settings/accounts">Социальные Сети</a>
+                    </li>
+                    <li ng-hide="language=='Ru'||authentication.user.provider !== 'local'">
+                        <a href="/#!/settings/password">Change Password</a>
+                    </li>
+                    <li ng-hide="language=='En'||authentication.user.provider !== 'local'">
+                        <a href="/#!/settings/password">Изменить Пароль</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li ng-hide="language=='Ru'">
+                        <a href="/auth/signout">Signout</a>
+                    </li>
+                    <li ng-hide="language=='En'">
+                        <a href="/auth/signout">Выйти</a>
+                    </li>
 
-				</ul>
-			</li>
+                </ul>
+            </li>
 
-		</ul>
+        </ul>
 
-	</nav>
+    </nav>
 
 </div>

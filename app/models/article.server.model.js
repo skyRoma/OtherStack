@@ -44,13 +44,13 @@ var ArticleSchema = new Schema({
         match: [/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/, 'Please enter correct link']
 
     },
-    upvotes:{
+    upvotes: {
         type: Number,
-        default:0
+        default: 0
     },
-    unpvotes:{
+    unpvotes: {
         type: Number,
-        default:0
+        default: 0
     }
 });
 

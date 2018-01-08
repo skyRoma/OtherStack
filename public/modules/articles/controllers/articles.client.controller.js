@@ -3,20 +3,19 @@
 // Articlescontroller
 angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '$stateParams', '$location', 'Authentication', 'Articles',
     function ($scope, $sce, $stateParams, $location, Authentication, Articles) {
-          if (!$scope.user) $scope.user = Authentication.user;
+        if (!$scope.user) $scope.user = Authentication.user;
 
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         $scope.offset = 0;
 
-        $scope.incrementUpvotes=function () {
+        $scope.incrementUpvotes = function () {
             $scope.article.upvotes++;
         }
-        $scope.incrementUnpvotes=function () {
+        $scope.incrementUnpvotes = function () {
             $scope.article.unpvotes++;
         }
-
 
 
         $scope.AddVideo = function () {
@@ -35,17 +34,16 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$sce', '
 
 
         $scope.EditVideo = function () {
-            $scope.article.validLink=this.AddVideo();
+            $scope.article.validLink = this.AddVideo();
         }
-
 
 
 //input exist video
         $scope.readVideoLink = function () {
             setTimeout(function () {
-                    var vid = document.getElementById("frame");
-                    vid.src = $scope.article.validLink;
-                    $scope.videoLink=$scope.article.validLink;
+                var vid = document.getElementById("frame");
+                vid.src = $scope.article.validLink;
+                $scope.videoLink = $scope.article.validLink;
 
             }, 100);
         };

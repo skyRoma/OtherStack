@@ -1,89 +1,92 @@
 <section data-ng-controller="ArticlesController" data-ng-init="findOne();readVideoLink()">
-	<div class="page-header">
-		<h1 data-ng-bind="article.name"></h1>
-		<p data-ng-bind="article.description"></p>
-		<p data-ng-bind="article.user.username"></p>
-		<p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
-		<iframe ng-hide="!article.validLink"  id="frame" width="560" height="315" src="" frameborder="0"></iframe>
-	</div>
-	<div data-ng-hide="!authentication.user||authentication.user._id!=article.user._id" class="pull-right">
-		<a class="btn btn-primary" href="/#!/articles/{{article._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
+    <div class="page-header">
+        <h1 data-ng-bind="article.name"></h1>
+        <p data-ng-bind="article.description"></p>
+        <p data-ng-bind="article.user.username"></p>
+        <p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
+        <iframe ng-hide="!article.validLink" id="frame" width="560" height="315" src="" frameborder="0"></iframe>
+    </div>
+    <div data-ng-hide="!authentication.user||authentication.user._id!=article.user._id" class="pull-right">
+        <a class="btn btn-primary" href="/#!/articles/{{article._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
 
-	<span class="glyphicon glyphicon-thumbs-up"
-		  ng-click="incrementUpvotes() ; update()"></span>
-	{{article.upvotes}}
-	<span class="glyphicon glyphicon-thumbs-down"
-		  ng-click="incrementUnpvotes(); update()"></span>
-	{{article.unpvotes}}
-	<!--List of comments-->
-	<section data-ng-controller="CommentsController" data-ng-init="find()">
-		<h3 ng-hide="language=='En'">Комментарии:</h3>
-		<h3 ng-hide="language=='Ru'">Comments:</h3>
-		<div class="list-group">
-			<div data-ng-repeat="comment in comments|filter:{article:article._id}:true" class="list-group-item">
-				<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == comment.user._id))">
-					<a href="/#!/comments/{{comment._id}}/edit">
-						<img src="/modules/users/img/buttons/edit.png" style="width: 20px; height: 20px">
-					</a>
-					<a data-ng-click="remove();">
-						<img src="/modules/users/img/buttons/remove.png" style="width: 20px; height: 20px">
-					</a>
-				</div>
-				<h4 class="list-group-item-heading" data-ng-bind="comment.text"></h4>
-				<small class="list-group-item-text">
-					Posted on
-					<span data-ng-bind="comment.created | date:'dd-MM-yyyy HH:mm'"></span></br>
-					by <span data-ng-bind="comment.user.username"></span>
-				</small>
-			</div>
-		</div>
+    <span class="glyphicon glyphicon-thumbs-up"
+          ng-click="incrementUpvotes() ; update()"></span>
+    {{article.upvotes}}
+    <span class="glyphicon glyphicon-thumbs-down"
+          ng-click="incrementUnpvotes(); update()"></span>
+    {{article.unpvotes}}
+    <!--List of comments-->
+    <section data-ng-controller="CommentsController" data-ng-init="find()">
+        <h3 ng-hide="language=='En'">Комментарии:</h3>
+        <h3 ng-hide="language=='Ru'">Comments:</h3>
+        <div class="list-group">
+            <div data-ng-repeat="comment in comments|filter:{article:article._id}:true" class="list-group-item">
+                <div class="pull-right"
+                     data-ng-show="((authentication.user) && (authentication.user._id == comment.user._id))">
+                    <a href="/#!/comments/{{comment._id}}/edit">
+                        <img src="/modules/users/img/buttons/edit.png" style="width: 20px; height: 20px">
+                    </a>
+                    <a data-ng-click="remove();">
+                        <img src="/modules/users/img/buttons/remove.png" style="width: 20px; height: 20px">
+                    </a>
+                </div>
+                <h4 class="list-group-item-heading" data-ng-bind="comment.text"></h4>
+                <small class="list-group-item-text">
+                    Posted on
+                    <span data-ng-bind="comment.created | date:'dd-MM-yyyy HH:mm'"></span></br>
+                    by <span data-ng-bind="comment.user.username"></span>
+                </small>
+            </div>
+        </div>
 
-		<!--Create new comment-->
+        <!--Create new comment-->
 
-		<div ng-hide="language=='En'" class="col-md-12">
-			<form class="form-horizontal" data-ng-submit="create(); find()" novalidate>
-				<fieldset>
-					<div class="form-group">
-						<label class="control-label" for="name"></label>
-						<div class="controls">
-							<input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Добавить комментарий" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<input type="submit" class="btn btn-default" value="Добавить">
-					</div>
-					<div data-ng-show="error" class="text-danger">
-						<strong data-ng-bind="error"></strong>
-					</div>
-				</fieldset>
-			</form>
-		</div>
+        <div ng-hide="language=='En'" class="col-md-12">
+            <form class="form-horizontal" data-ng-submit="create(); find()" novalidate>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label" for="name"></label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="name" id="name" class="form-control"
+                                   placeholder="Добавить комментарий" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default" value="Добавить">
+                    </div>
+                    <div data-ng-show="error" class="text-danger">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
 
         <div ng-hide="language=='Ru'" class="col-md-12">
-			<form class="form-horizontal" data-ng-submit="create(); find()" novalidate>
-				<fieldset>
-					<div class="form-group">
-						<label class="control-label" for="name"></label>
-						<div class="controls">
-							<input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Add your comment" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<input type="submit" class="btn btn-default" value="Add">
-					</div>
-					<div data-ng-show="error" class="text-danger">
-						<strong data-ng-bind="error"></strong>
-					</div>
-				</fieldset>
-			</form>
-		</div>
-	</section>
+            <form class="form-horizontal" data-ng-submit="create(); find()" novalidate>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label" for="name"></label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="name" id="name" class="form-control"
+                                   placeholder="Add your comment" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default" value="Add">
+                    </div>
+                    <div data-ng-show="error" class="text-danger">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
 
 </section>
 

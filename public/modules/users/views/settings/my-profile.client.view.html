@@ -95,7 +95,6 @@
             <a data-ng-repeat="article in articles | filter:{user:user._id}:true|orderBy:'created':true"
                data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
                 <h4 class="list-group-item-heading" data-ng-bind="article.name"></h4>
-                <span data-ng-bind="article.description"></span>
                 <span data-ng-bind="article.user.username"></span>
                 <p data-ng-bind="article.created|date:'dd-MM-yyyy HH:mm'"></p>
             </a>

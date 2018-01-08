@@ -8,15 +8,16 @@
                 <div class="form-group">
                     <label class="control-label" for="name">Text</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="comment.text" id="name" class="form-control" placeholder="Text" required>
+                        <input type="text" data-ng-model="comment.text" id="name" class="form-control"
+                               placeholder="Text" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-default">
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
             </fieldset>
         </form>
     </div>
